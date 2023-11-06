@@ -3,6 +3,7 @@ package com.luminousstore.luminousstore.controller;
 import com.luminousstore.luminousstore.entity.Product;
 import com.luminousstore.luminousstore.service.Impl.ProductServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
@@ -26,30 +27,35 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProduct(@PathVariable("id") Long id) {
+    public ResponseEntity<Product> getProductById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(this.productService.findProductById(id));
     }
+
+
+                        //Angular URLs
+//const searchUrl =
+//      `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}` +
+//      `&page=${thePage}&size=${thePageSize}`;
 
     @GetMapping("/search/{name}")
     public ResponseEntity<List<Product>> findByNameContaining(@RequestParam("name") String name) {
         return ResponseEntity.ok(this.productService.findByNameContaining(name));
     }
-
-//    @GetMapping("/search/{id}")
-//    public ResponseEntity<Page<Product>> findByCategoryId(@RequestParam("id") Long id, Pageable pageable) {
-//        return ResponseEntity.ok(this.productService.findByCategoryId(id, pageable));
-//    }
+    // @TODO: add pageable version of findByNameContaining
 
 
-    @GetMapping("/pageable")
-    public ResponseEntity<Page<Product>> getAllProducts(Pageable pageable) {
-        return ResponseEntity.ok(this.productService.getProductsPaginated(pageable));
+
+    @GetMapping("/search/category/{id}")
+    public ResponseEntity<Page<Product>> getByCategory(@RequestParam("id") Long id, Pageable pageable) {
+        return ResponseEntity.ok(this.productService.findByCategoryId(id, pageable));
     }
 
 
-    public ResponseEntity<Page<Product>> getProducts(Pageable pageable) {
-        Page<Product> products = productService.getProductsPaginated(pageable);
-        return ResponseEntity.ok(products);
+
+    // testing Pageable
+    @GetMapping("/pageable")
+    public ResponseEntity<Page<Product>> getAllProducts(Pageable pageable) {
+        return ResponseEntity.ok(this.productService.getProductsPaginated(pageable));
     }
 
 

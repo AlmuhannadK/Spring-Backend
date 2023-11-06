@@ -34,6 +34,11 @@ public class ProductServiceImpl implements ProductService {
 //    }
 
 
+    public Page<Product> findByCategoryId(@Param("id") Long id, Pageable pageable) {
+        return this.productRepository.findByCategoryId(id, pageable);
+    }
+
+
     public Page<Product> getProductsPaginated(Pageable pageable) {
         return productRepository.findAll(pageable);
     }

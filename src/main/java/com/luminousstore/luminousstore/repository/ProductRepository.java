@@ -14,6 +14,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Product findProductById(Long id);
 
+    Page<Product> findByCategoryId(Long id, Pageable pageable);
+
 
     // there's a couple of functions in Angular that use pages and pages sizes as path variables
     //so, I need to use the method headers in the bottom to emulate their behaviour
