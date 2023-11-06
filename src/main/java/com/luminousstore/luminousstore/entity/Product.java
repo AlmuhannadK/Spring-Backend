@@ -1,6 +1,7 @@
 package com.luminousstore.luminousstore.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -39,7 +40,6 @@ public class Product {
     @Column(name = "units_in_stock")
     private int unitsInStock;
 
-    //annotations to manage timestamps by hibernate automatically
     @Column(name = "date_created")
     @CreationTimestamp
     private Date dateCreated;
@@ -50,6 +50,7 @@ public class Product {
 
     // relationship
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn(name = "category_id", nullable = false)
     private ProductCategory category;
 
