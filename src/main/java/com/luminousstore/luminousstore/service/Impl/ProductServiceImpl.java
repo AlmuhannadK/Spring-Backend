@@ -4,6 +4,9 @@ import com.luminousstore.luminousstore.entity.Product;
 import com.luminousstore.luminousstore.repository.ProductRepository;
 import com.luminousstore.luminousstore.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,4 +28,14 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> findByNameContaining(String name) {
         return this.productRepository.findByNameContaining(name);
     }
+
+//    public Page<Product> findByCategoryId(@Param("id") Long id, Pageable pageable) {
+//        return this.productRepository.findByCategoryId(id, pageable);
+//    }
+
+
+    public Page<Product> getProductsPaginated(Pageable pageable) {
+        return productRepository.findAll(pageable);
+    }
+
 }
