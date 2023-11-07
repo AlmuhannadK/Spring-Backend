@@ -9,7 +9,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class PurchaseDTO {
+public class PurchaseRequest {
 
     private User user;
 
