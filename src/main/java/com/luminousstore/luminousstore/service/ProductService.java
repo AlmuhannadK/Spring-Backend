@@ -9,16 +9,16 @@ import java.util.List;
 
 public interface ProductService {
 
-    List<Product> findAll();
 
     Product findProductById(Long id);
 
-    List<Product> findByNameContaining(String name);
+//    List<Product> findByNameContaining(String name);
 
-    Page<Product> getProductsPaginated(Pageable pageable);
+    Page<Product> findByNameContaining(@Param("name") String name, Pageable pageable);
+
+
+    List<Product> getAllProducts();
 
     Page<Product> findByCategoryId(@Param("id") Long id, Pageable pageable);
-//
-//    Page<Product> findByNameContaining(@Param("name") String name, Pageable page);
 
 }

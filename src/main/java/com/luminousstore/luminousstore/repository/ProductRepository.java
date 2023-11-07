@@ -10,10 +10,15 @@ import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    List<Product> findByNameContaining(String name);
 
+//    List<Product> findByNameContaining(String name);
+
+    //used
+    Page<Product> findByNameContaining(String name, Pageable pageable);
+    //used
     Product findProductById(Long id);
 
+    // used
     Page<Product> findByCategoryId(Long id, Pageable pageable);
 
 
@@ -21,8 +26,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     //so, I need to use the method headers in the bottom to emulate their behaviour
     // These methods need to be declared in this Product Repository since they use the baseUrl (/products)
 
-//    Page<Product> findByCategoryId(@Param("id") Long id, Pageable pageable);
-//
 //    Page<Product> findByCategoryId(@Param("id") Long id, Pageable pageable);
 //
 //    Page<Product> findByNameContaining(@Param("name") String name, Pageable page);

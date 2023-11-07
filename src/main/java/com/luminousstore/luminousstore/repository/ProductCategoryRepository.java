@@ -8,5 +8,4 @@ import org.springframework.data.repository.query.Param;
 
 public interface ProductCategoryRepository extends JpaRepository<ProductCategory, Long> {
 
-
 }

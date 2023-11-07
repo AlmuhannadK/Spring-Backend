@@ -17,7 +17,7 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
 
-    public List<Product> findAll() {
+    public List<Product> listAllProducts() {
         return this.productRepository.findAll();
     }
 
@@ -25,12 +25,8 @@ public class ProductServiceImpl implements ProductService {
         return this.productRepository.findProductById(id);
     }
 
-    public List<Product> findByNameContaining(String name) {
-        return this.productRepository.findByNameContaining(name);
-    }
-
-//    public Page<Product> findByCategoryId(@Param("id") Long id, Pageable pageable) {
-//        return this.productRepository.findByCategoryId(id, pageable);
+//    public List<Product> findByNameContaining(String name) {
+//        return this.productRepository.findByNameContaining(name);
 //    }
 
 
@@ -39,8 +35,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
 
-    public Page<Product> getProductsPaginated(Pageable pageable) {
-        return productRepository.findAll(pageable);
+    public List<Product> getAllProducts() {
+        return this.productRepository.findAll();
     }
+
+    public Page<Product> findByNameContaining(String name, Pageable pageable) {
+        return this.productRepository.findByNameContaining(name, pageable);
+    }
+
 
 }
