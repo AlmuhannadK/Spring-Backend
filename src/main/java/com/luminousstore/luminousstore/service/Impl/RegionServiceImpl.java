@@ -14,8 +14,8 @@ public class RegionServiceImpl implements RegionService {
 
     private final RegionRepository regionRepository;
 
-    public List<Region> getAllRegions() {
-        return this.regionRepository.findAll();
+    public List<Region> getRegionByCountryCode(String code) {
+        return this.regionRepository.findByCountryCode(code);
     }
 
 }
