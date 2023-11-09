@@ -4,6 +4,7 @@ import com.luminousstore.luminousstore.entity.Region;
 import com.luminousstore.luminousstore.service.Impl.RegionServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/regions")
 @RequiredArgsConstructor
+@Validated
 public class RegionController {
 
     private final RegionServiceImpl regionService;

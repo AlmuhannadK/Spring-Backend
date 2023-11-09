@@ -1,17 +1,18 @@
 package com.luminousstore.luminousstore.controller;
 
 import com.luminousstore.luminousstore.dto.UserDTO;
+import com.luminousstore.luminousstore.entity.User;
 import com.luminousstore.luminousstore.service.Impl.RegistrationServiceImpl;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/users")
 @RequiredArgsConstructor
 public class RegistrationController {
 
@@ -19,8 +20,14 @@ public class RegistrationController {
 
 
     @PostMapping(path = "/registration")
-    public ResponseEntity<UserDTO> registerUser(@RequestBody UserDTO user) {
+    public ResponseEntity<UserDTO> registerUser(@Valid @RequestBody UserDTO user) {
         return ResponseEntity.ok(this.registrationService.registerUser(user));
     }
+
+    @GetMapping()
+    public ResponseEntity<List<User>> getRegisteredUsers() {
+        return ResponseEntity.ok(this.registrationService.getRegisteredUsers());
+    }
+
 
 }

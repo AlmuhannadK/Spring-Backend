@@ -8,7 +8,8 @@ import com.luminousstore.luminousstore.service.RegistrationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
@@ -19,41 +20,29 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 
 
-    public UserDTO registerUser(UserDTO userDto){
+
+    public List<User> getRegisteredUsers() {
+        return this.userRepository.findAll();
+    }
 
 
-        // check email is already there
-        //
-        if (this.userRepository.findByEmail(userDto.getEmail()) == null
-                && this.userRepository.findByUsername(userDto.getUsername()) == null){
+    public UserDTO registerUser(UserDTO userDto) {
+
+        if ( this.userRepository.findByEmail(userDto.getEmail()) == null && this.userRepository.findByUsername(userDto.getUsername()) == null ) {
             User registerer = this.userMapper.userToEntity(userDto);
             this.userRepository.save(registerer);
             return userDto;
-        }
-        else{
+        } else {  // throw exception here
             return null;
         }
     }
 
-
-    // Add data validations (email and username are not repeated in db)
-//    public Optional<UserDTO> registerUser(UserDTO userDto) {
-//
-//        Optional<UserDTO> userOptional = Optional.of(userDto);
-//        if(userOptional.isPresent()) {
-//            User checkUser = this.userMapper.userToEntity(userOptional.get());
-//
-//
-//        }
-//
-//
-//    }
-
-//    private boolean emailCheck(String email) {
+//    public boolean emailAlreadyExists(String email) {
 //        return this.userRepository.findByEmail(email);
 //    }
 //
-//    private boolean usernameCheck(String username) {
+//    private boolean usernameAlreadyExists(String username) {
 //        return this.userRepository.findByUsername(username);
 //    }
+
 }
