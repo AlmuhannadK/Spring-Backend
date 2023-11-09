@@ -20,6 +20,9 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 
 
+    public User getRegisteredUserById(Long id) {
+        return this.userRepository.findById(id).get();
+    }
 
     public List<User> getRegisteredUsers() {
         return this.userRepository.findAll();

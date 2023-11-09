@@ -24,10 +24,19 @@ public class RegistrationController {
         return ResponseEntity.ok(this.registrationService.registerUser(user));
     }
 
+    // TESTING FOR EXCEPTION HANDLING
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getRegisteredUserById(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(this.registrationService.getRegisteredUserById(id));
+    }
+
     @GetMapping()
     public ResponseEntity<List<User>> getRegisteredUsers() {
         return ResponseEntity.ok(this.registrationService.getRegisteredUsers());
     }
+
+
+
 
 
 }
