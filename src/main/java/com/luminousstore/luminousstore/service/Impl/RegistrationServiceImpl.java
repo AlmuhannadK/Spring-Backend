@@ -28,7 +28,7 @@ public class RegistrationServiceImpl implements RegistrationService {
         return this.userRepository.findAll();
     }
 
-
+// why not use Optional class?
     public UserDTO registerUser(UserDTO userDto) {
         if ( !usernameAlreadyExists(userDto.getUsername()) && !emailAlreadyExists(userDto.getEmail())) {
             User registerer = this.userMapper.userToEntity(userDto);
