@@ -1,9 +1,6 @@
 package com.luminousstore.luminousstore.dto;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
@@ -24,9 +21,9 @@ public class UserDTO {
     private String lastName;
 
     @NotNull
-    @Pattern(regexp = "^[a-zA-Z][a-zA-Z0-9]{4,}$")
+    @Size(min = 2, max = 20)
+    @Pattern(regexp = "^[a-zA-Z][a-zA-Z0-9]+$")
     private String username;
-
 
 //    @Email
     @NotNull
@@ -34,6 +31,7 @@ public class UserDTO {
     private String email;
 
     @NotNull
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{5,}$")
     private String password;
 
 }

@@ -8,11 +8,13 @@ import java.time.LocalDateTime;
 public class ErrorResponse {
 
     private HttpStatus status;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy,MM,dd hh:mm:ss")
-    private LocalDateTime timeStamp;
     private String message;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy:MM:dd hh:mm:ss")
+    private LocalDateTime timeStamp;
+
 
     public ErrorResponse(HttpStatus status) {
+        this();
         this.status = status;
     }
 
@@ -48,7 +50,7 @@ public class ErrorResponse {
         this.status = status;
     }
 
-    public void setTimeStamp(LocalDateTime timeStamp) {
+    public void setTimeStamp() {
         this.timeStamp = timeStamp;
     }
 

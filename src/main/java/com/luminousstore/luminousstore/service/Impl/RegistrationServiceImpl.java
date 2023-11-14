@@ -30,22 +30,20 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 
     public UserDTO registerUser(UserDTO userDto) {
-
-        if ( this.userRepository.findByEmail(userDto.getEmail()) == null && this.userRepository.findByUsername(userDto.getUsername()) == null ) {
+        if ( !usernameAlreadyExists(userDto.getUsername()) && !emailAlreadyExists(userDto.getEmail())) {
             User registerer = this.userMapper.userToEntity(userDto);
             this.userRepository.save(registerer);
             return userDto;
-        } else {  // throw exception here
+        } else {
             return null;
         }
     }
 
-//    public boolean emailAlreadyExists(String email) {
-//        return this.userRepository.findByEmail(email);
-//    }
-//
-//    private boolean usernameAlreadyExists(String username) {
-//        return this.userRepository.findByUsername(username);
-//    }
 
+    public boolean usernameAlreadyExists(String username) {
+        return this.userRepository.findByUsername(username) != null;
+    }
+    public boolean emailAlreadyExists(String email) {
+        return this.userRepository.findByEmail(email) != null;
+    }
 }
