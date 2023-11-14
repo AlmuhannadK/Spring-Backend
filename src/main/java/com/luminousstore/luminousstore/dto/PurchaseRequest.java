@@ -10,6 +10,7 @@ import java.util.List;
 
 @Data
 public class PurchaseRequest {
+//need to add validations here
 
     private User user;
 

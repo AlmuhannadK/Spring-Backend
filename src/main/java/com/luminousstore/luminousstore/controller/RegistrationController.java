@@ -4,6 +4,7 @@ import com.luminousstore.luminousstore.dto.UserDTO;
 import com.luminousstore.luminousstore.entity.User;
 import com.luminousstore.luminousstore.service.Impl.RegistrationServiceImpl;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -26,8 +27,9 @@ public class RegistrationController {
     }
 
     // TESTING FOR EXCEPTION HANDLING
+    // validate path variables and request parameters directly via annotations since these are not objects
     @GetMapping("/{id}")
-    public ResponseEntity<User> getRegisteredUserById(@Valid @PathVariable("id") Long id) {
+    public ResponseEntity<User> getRegisteredUserById(@PathVariable("id") @Min(1) Long id) {
         return ResponseEntity.ok(this.registrationService.getRegisteredUserById(id));
     }
 
