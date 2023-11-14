@@ -1,6 +1,7 @@
 package com.luminousstore.luminousstore.controller.errors;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
@@ -29,15 +30,24 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler { // ha
                                                                HttpHeaders headers,
                                                                HttpStatusCode status,
                                                                WebRequest request) {
-        String error = "PLEASE ENTER VALID INPUTS :: " + ex.getMessage();
+        String error = "please enter valid inputs :: " + ex.getMessage();
         return buildResponseEntity(new ErrorResponse(HttpStatus.BAD_REQUEST, error));
     }
 
-    @ExceptionHandler(value = NoSuchElementException.class)
-    public ResponseEntity<Object> handleNoSuchElementException(HttpServletRequest request,  NoSuchElementException ex){
+    @ExceptionHandler(NoSuchElementException.class)
+    public ResponseEntity<Object> handleNoSuchElementException(HttpServletRequest request,
+                                                               NoSuchElementException ex){
 
         ErrorResponse response = new ErrorResponse(HttpStatus.NOT_FOUND);
-        response.setMessage("NO DATA FOR THIS ID IN STORAGE: " + request.getRequestURI());
+        response.setMessage("no data found for this id in storage: " + request.getRequestURI());
+        return buildResponseEntity(response);
+    }
+
+    // request body validation fail
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<Object> handleConstraintViolationException(ConstraintViolationException ex) {
+        ErrorResponse response = new ErrorResponse(HttpStatus.BAD_REQUEST);
+        response.setMessage("not valid due to validation error: " + ex.getMessage());
         return buildResponseEntity(response);
     }
 

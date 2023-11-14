@@ -19,7 +19,7 @@ public class CheckoutServiceImpl implements CheckoutService {
 
     private final UserRepository userRepository;
 
-    @Transactional
+    @Transactional //atomic transactional operations in db
     public PurchaseResponse placeOrder(PurchaseRequest purchase) {
         Order order = purchase.getOrder();
         String orderTrackingNumber = generateOrderTrackingNumber();

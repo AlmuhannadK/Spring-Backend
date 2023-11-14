@@ -16,6 +16,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/users")
 @RequiredArgsConstructor
+@CrossOrigin("http://localhost:4200")
+@Validated
 public class RegistrationController {
 
     private final RegistrationServiceImpl registrationService;
@@ -27,7 +29,8 @@ public class RegistrationController {
     }
 
     // TESTING FOR EXCEPTION HANDLING
-    // validate path variables and request parameters directly via annotations since these are not objects
+    // validate path variables and request parameters via annotations directly
+    // since these are not objects, but need to add @Validated at class-level
     @GetMapping("/{id}")
     public ResponseEntity<User> getRegisteredUserById(@PathVariable("id") @Min(1) Long id) {
         return ResponseEntity.ok(this.registrationService.getRegisteredUserById(id));

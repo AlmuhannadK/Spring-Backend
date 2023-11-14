@@ -4,6 +4,7 @@ import com.luminousstore.luminousstore.entity.Product;
 import com.luminousstore.luminousstore.entity.ProductCategory;
 import com.luminousstore.luminousstore.service.Impl.ProductCategoryServiceImpl;
 import com.luminousstore.luminousstore.service.Impl.ProductServiceImpl;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -20,7 +21,7 @@ import java.util.List;
 @RequestMapping("/api")
 @RequiredArgsConstructor
 @CrossOrigin("http://localhost:4200")
-@Validated
+@Validated //for PathVar and ReqParam
 public class ProductController {
 
     private final ProductServiceImpl productService;
@@ -33,13 +34,13 @@ public class ProductController {
     }
 
     @GetMapping("/products/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable("id") @Min(1) Long id) {
+    public ResponseEntity<Product> getProductById(@PathVariable("id") @Min(1) @Max(100) Long id) {
         return ResponseEntity.ok(this.productService.findProductById(id));
     }
 
 
     @GetMapping("/products/search/{name}")
-    public ResponseEntity<Page<Product>> findByNameContaining(@RequestParam("name") @NotBlank @Size(min = 1) String name, Pageable pageable) {
+    public ResponseEntity<Page<Product>> findByNameContaining(@RequestParam("name") @NotBlank @Size(min = 1, max = 30) String name, Pageable pageable) {
         return ResponseEntity.ok(this.productService.findByNameContaining(name, pageable));
     }
 

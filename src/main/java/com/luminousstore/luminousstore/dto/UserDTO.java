@@ -10,23 +10,23 @@ import lombok.NonNull;
 
 public class UserDTO {
 
-    @NotEmpty(message = "first name must not be empty")
+    @NotEmpty
     @Size(min = 2, max = 20)
     @Pattern(regexp = "^[a-zA-Z]+$")
     private String firstName;
 
-    @NotEmpty(message = "last name must not be empty")
+    @NotEmpty
     @Size(min = 2, max = 20 ,message = "Last name must be at least 2 and maximum 20 characters")
     @Pattern(regexp = "^[a-zA-Z]+$")
     private String lastName;
 
-    @NotEmpty(message = "username must not be empty")
+    @NotEmpty
     @Size(min = 2, max = 20)
     @Pattern(regexp = "^[a-zA-Z][a-zA-Z0-9]+$")
     private String username;
 
 //    @Email
-    @NotEmpty(message = "email must not be empty")
+    @NotEmpty
     @Pattern(regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")
     private String email;
 
