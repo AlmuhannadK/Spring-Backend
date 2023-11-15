@@ -20,7 +20,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200/")
 @Validated //for PathVar and ReqParam
 public class ProductController {
 

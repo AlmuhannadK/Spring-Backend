@@ -2,13 +2,15 @@ package com.luminousstore.luminousstore.config;
 
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+@Configuration
 public class MyCorsConfig{
 
     @Bean
-    public WebMvcConfigurer MyCorsConfig()
+    public WebMvcConfigurer corsConfig()
     {
         String[] allowDomains = new String[2];
         allowDomains[0] = "http://localhost:4200";
@@ -18,7 +20,10 @@ public class MyCorsConfig{
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins(allowDomains);
+                registry.addMapping("/**")
+                        .allowedOrigins(allowDomains)
+                        .allowedHeaders("*")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE");
             }
         };
     }
