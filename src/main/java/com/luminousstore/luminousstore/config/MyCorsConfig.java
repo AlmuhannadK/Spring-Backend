@@ -10,8 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class MyCorsConfig{
 
     @Bean
-    public WebMvcConfigurer corsConfig()
-    {
+    public WebMvcConfigurer corsConfig() {
         String[] allowDomains = new String[2];
         allowDomains[0] = "http://localhost:4200";
         allowDomains[1] = "http://localhost:8080";
@@ -23,10 +22,10 @@ public class MyCorsConfig{
                 registry.addMapping("/**")
                         .allowedOrigins(allowDomains)
                         .allowedHeaders("*")
-                        .allowedMethods("GET", "POST", "PUT", "DELETE");
+                        .allowedMethods("GET", "POST", "PUT", "DELETE")
+                        .allowCredentials(true);
             }
         };
     }
-
 }
 

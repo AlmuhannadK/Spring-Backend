@@ -14,7 +14,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/regions")
 @RequiredArgsConstructor
-//@CrossOrigin(origins = "http://localhost:4200/")
 @Validated
 public class RegionController {
 
