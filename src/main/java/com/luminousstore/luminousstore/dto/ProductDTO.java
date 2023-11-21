@@ -1,11 +1,13 @@
 package com.luminousstore.luminousstore.dto;
 
 import com.luminousstore.luminousstore.entity.ProductCategory;
+import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;
 
 @Data
+@Builder
 public class ProductDTO {
 
     private String sku;

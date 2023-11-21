@@ -1,6 +1,7 @@
 package com.luminousstore.luminousstore.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,6 +24,7 @@ public class ProductCategory {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
     @JsonBackReference
+    @JsonIgnore
     private Set<Product> products;
 
 }

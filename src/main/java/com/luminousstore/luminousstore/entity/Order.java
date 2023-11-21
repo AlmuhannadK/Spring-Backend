@@ -1,6 +1,7 @@
 package com.luminousstore.luminousstore.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -45,9 +46,6 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "shipping_address_id", referencedColumnName = "id")
@@ -56,6 +54,12 @@ public class Order {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "billing_address_id", referencedColumnName = "id")
     private Address billingAddress;
+
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonManagedReference
+    private User user;
 
 
     public void addOrderItem(OrderItem item) {
