@@ -5,12 +5,13 @@ import com.luminousstore.luminousstore.entity.Order;
 import com.luminousstore.luminousstore.entity.OrderItem;
 import com.luminousstore.luminousstore.entity.User;
 import lombok.Data;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
 @Data
+@Validated
 public class PurchaseRequest {
-//need to add validations here
 
     private User user;
 

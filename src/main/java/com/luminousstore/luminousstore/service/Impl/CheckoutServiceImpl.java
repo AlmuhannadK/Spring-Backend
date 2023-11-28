@@ -5,6 +5,7 @@ import com.luminousstore.luminousstore.dto.PurchaseResponse;
 import com.luminousstore.luminousstore.entity.Order;
 import com.luminousstore.luminousstore.entity.OrderItem;
 import com.luminousstore.luminousstore.entity.User;
+import com.luminousstore.luminousstore.mapper.Impl.UserMapperImpl;
 import com.luminousstore.luminousstore.repository.UserRepository;
 import com.luminousstore.luminousstore.service.CheckoutService;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ import java.util.UUID;
 public class CheckoutServiceImpl implements CheckoutService {
 
     private final UserRepository userRepository;
+    private final UserMapperImpl userMapper;
 
     @Transactional //atomic transactional operations in db
     public PurchaseResponse placeOrder(PurchaseRequest purchase) {
@@ -33,8 +35,8 @@ public class CheckoutServiceImpl implements CheckoutService {
         // assign order to customer
         User customer = purchase.getUser();
         customer.addOrder(order);
-
         this.userRepository.save(customer);
+
         return new PurchaseResponse(orderTrackingNumber);
     }
 

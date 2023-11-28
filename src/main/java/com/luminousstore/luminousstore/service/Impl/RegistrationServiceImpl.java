@@ -6,7 +6,10 @@ import com.luminousstore.luminousstore.mapper.Impl.UserMapperImpl;
 import com.luminousstore.luminousstore.repository.UserRepository;
 import com.luminousstore.luminousstore.service.RegistrationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
 
@@ -28,14 +31,14 @@ public class RegistrationServiceImpl implements RegistrationService {
         return this.userRepository.findAll();
     }
 
-// why not use Optional class?
-    public UserDTO registerUser(UserDTO userDto) {
+    public ResponseEntity registerUser(UserDTO userDto) {
         if ( !usernameAlreadyExists(userDto.getUsername()) && !emailAlreadyExists(userDto.getEmail())) {
             User registerer = this.userMapper.userToEntity(userDto);
             this.userRepository.save(registerer);
-            return userDto;
+            return ResponseEntity.ok(HttpStatus.ACCEPTED);
+
         } else {
-            return null;
+            return (ResponseEntity) ResponseEntity.status(HttpStatus.BAD_REQUEST);
         }
     }
 

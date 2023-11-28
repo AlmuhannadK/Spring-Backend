@@ -4,11 +4,15 @@ import com.luminousstore.luminousstore.dto.PurchaseRequest;
 import com.luminousstore.luminousstore.dto.PurchaseResponse;
 import com.luminousstore.luminousstore.service.Impl.CheckoutServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON;
+
+
 @RestController
-@RequestMapping("api/checkout")
+@RequestMapping(value = "api/checkout")
 @RequiredArgsConstructor
 public class CheckoutController {
 

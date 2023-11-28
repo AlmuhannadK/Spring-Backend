@@ -27,7 +27,6 @@ public class ProductServiceImpl implements ProductService {
 //        return this.productRepository.findByNameContaining(name);
 //    }
 
-
     public Page<Product> findByCategoryId(@Param("id") Long id, Pageable pageable) {
         return this.productRepository.findByCategoryId(id, pageable);
     }
@@ -40,6 +39,5 @@ public class ProductServiceImpl implements ProductService {
     public Page<Product> findByNameContaining(String name, Pageable pageable) {
         return this.productRepository.findByNameContaining(name, pageable);
     }
-
 
 }

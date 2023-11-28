@@ -33,13 +33,13 @@ public class ProductController {
     }
 
     @GetMapping("/products/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable("id") @Min(1) @Max(100) Long id) {
+    public ResponseEntity<Product> getProductById(@PathVariable("id") @Min(1) @Max(999) Long id) {
         return ResponseEntity.ok(this.productService.findProductById(id));
     }
 
 
     @GetMapping("/products/search/{name}")
-    public ResponseEntity<Page<Product>> findByNameContaining(@RequestParam("name") @NotBlank @Size(min = 1, max = 30) String name, Pageable pageable) {
+    public ResponseEntity<Page<Product>> findByNameContaining(@RequestParam("name") @NotBlank @Size(min = 1, max = 50) String name, Pageable pageable) {
         return ResponseEntity.ok(this.productService.findByNameContaining(name, pageable));
     }
 

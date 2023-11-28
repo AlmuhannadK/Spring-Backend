@@ -20,7 +20,7 @@ public class RegionController {
     private final RegionServiceImpl regionService;
 
 
-    @GetMapping("/{code}")
+    @GetMapping("/search/{code}")
     public ResponseEntity<List<Region>> getRegionByCountryCode(@RequestParam("code") @NotBlank @Size(min = 2, max = 2) String code) {
         return ResponseEntity.ok(this.regionService.getRegionByCountryCode(code));
     }

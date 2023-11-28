@@ -4,6 +4,8 @@ import com.luminousstore.luminousstore.entity.ProductCategory;
 import com.luminousstore.luminousstore.repository.ProductCategoryRepository;
 import com.luminousstore.luminousstore.service.ProductCategoryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +19,5 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     public List<ProductCategory> getProductCategories() {
         return this.productCategoryRepository.findAll();
     }
-
 
 }

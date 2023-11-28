@@ -1,12 +1,11 @@
 package com.luminousstore.luminousstore.service;
 
 import com.luminousstore.luminousstore.dto.UserDTO;
-
-import java.util.Optional;
+import org.springframework.http.ResponseEntity;
 
 public interface RegistrationService {
 
-    UserDTO registerUser(UserDTO user);
+    ResponseEntity<UserDTO> registerUser(UserDTO user);
 
 
 }
