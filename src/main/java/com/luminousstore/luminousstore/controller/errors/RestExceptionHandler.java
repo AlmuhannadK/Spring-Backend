@@ -1,5 +1,6 @@
 package com.luminousstore.luminousstore.controller.errors;
 
+import com.luminousstore.luminousstore.service.Impl.RegistrationServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.context.annotation.Bean;

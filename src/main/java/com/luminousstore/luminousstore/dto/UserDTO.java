@@ -1,9 +1,12 @@
 package com.luminousstore.luminousstore.dto;
 
+import com.luminousstore.luminousstore.entity.Order;
 import jakarta.validation.constraints.*;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
+
+import java.util.ArrayList;
 
 @Data
 @Builder
@@ -33,5 +36,6 @@ public class UserDTO {
     @NotEmpty(message = "password must not be empty")
     @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{5,}$")
     private String password;
+
 
 }

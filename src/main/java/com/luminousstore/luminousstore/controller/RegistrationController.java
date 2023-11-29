@@ -23,8 +23,8 @@ public class RegistrationController {
 
 
     @PostMapping(path = "/registration")
-    public ResponseEntity<UserDTO> registerUser(@Valid @RequestBody UserDTO user) {
-        return ResponseEntity.ok(this.registrationService.registerUser(user));
+    public ResponseEntity registerUser(@Valid @RequestBody UserDTO user) {
+        return this.registrationService.registerUser(user);
     }
 
     // TESTING FOR EXCEPTION HANDLING

@@ -7,17 +7,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
-@RequestMapping("api/checkout")
+@RequestMapping(value = "/api/checkout")
 @RequiredArgsConstructor
 public class CheckoutController {
 
     private final CheckoutServiceImpl checkoutService;
 
-
     @PostMapping(path = "/purchase")
-    public ResponseEntity<PurchaseResponse> placeOrder(@RequestBody PurchaseRequest purchase) {
+    public ResponseEntity<PurchaseResponse> placeOrder(@RequestBody(required = false) PurchaseRequest purchase) {
         return ResponseEntity.ok(this.checkoutService.placeOrder(purchase));
     }
-
 }
