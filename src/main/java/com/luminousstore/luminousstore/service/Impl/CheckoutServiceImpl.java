@@ -5,12 +5,12 @@ import com.luminousstore.luminousstore.dto.PurchaseResponse;
 import com.luminousstore.luminousstore.entity.Order;
 import com.luminousstore.luminousstore.entity.OrderItem;
 import com.luminousstore.luminousstore.entity.User;
-import com.luminousstore.luminousstore.mapper.Impl.UserMapperImpl;
 import com.luminousstore.luminousstore.repository.UserRepository;
 import com.luminousstore.luminousstore.service.CheckoutService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -19,7 +19,6 @@ import java.util.UUID;
 public class CheckoutServiceImpl implements CheckoutService {
 
     private final UserRepository userRepository;
-    private final UserMapperImpl userMapper;
 
     @Transactional //atomic transactional operations in db
     public PurchaseResponse placeOrder(PurchaseRequest purchase) {
@@ -33,7 +32,7 @@ public class CheckoutServiceImpl implements CheckoutService {
         order.setShippingAddress(purchase.getShippingAddress());
         order.setBillingAddress(purchase.getBillingAddress());
         // assign order to customer
-        User customer = purchase.getUser();
+        User customer = purchase.getCustomer();
         customer.addOrder(order);
         this.userRepository.save(customer);
 

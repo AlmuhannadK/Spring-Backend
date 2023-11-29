@@ -4,24 +4,19 @@ import com.luminousstore.luminousstore.dto.PurchaseRequest;
 import com.luminousstore.luminousstore.dto.PurchaseResponse;
 import com.luminousstore.luminousstore.service.Impl.CheckoutServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON;
-
 
 @RestController
-@RequestMapping(value = "api/checkout")
+@RequestMapping(value = "/api/checkout")
 @RequiredArgsConstructor
 public class CheckoutController {
 
     private final CheckoutServiceImpl checkoutService;
 
-
     @PostMapping(path = "/purchase")
-    public ResponseEntity<PurchaseResponse> placeOrder(@RequestBody PurchaseRequest purchase) {
+    public ResponseEntity<PurchaseResponse> placeOrder(@RequestBody(required = false) PurchaseRequest purchase) {
         return ResponseEntity.ok(this.checkoutService.placeOrder(purchase));
     }
-
 }
