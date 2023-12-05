@@ -16,7 +16,7 @@ public class CheckoutController {
     private final CheckoutServiceImpl checkoutService;
 
     @PostMapping(path = "/purchase")
-    public ResponseEntity<PurchaseResponse> placeOrder(@RequestBody(required = false) PurchaseRequest purchase) {
+    public ResponseEntity<PurchaseResponse> placeOrder(@RequestBody PurchaseRequest purchase) {
         return ResponseEntity.ok(this.checkoutService.placeOrder(purchase));
     }
 }

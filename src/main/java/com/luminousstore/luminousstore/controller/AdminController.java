@@ -23,7 +23,7 @@ public class AdminController {
 
 
     //          Product Management          //
-    @GetMapping("/products")
+    @GetMapping(value = "/products")
     public ResponseEntity<List<Product>> getAllProducts() {
         return ResponseEntity.ok(this.adminService.getAllProducts());
     }

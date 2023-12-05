@@ -1,6 +1,7 @@
 package com.luminousstore.luminousstore.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -41,7 +42,8 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    @JsonBackReference
+//    @JsonBackReference will throw exception!! json back ref cannot be used in a collection
+    @JsonIgnore
     private List<Order> orders;
 
 

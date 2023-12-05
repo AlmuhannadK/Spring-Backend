@@ -1,6 +1,7 @@
 package com.luminousstore.luminousstore.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -49,16 +50,19 @@ public class Order {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "shipping_address_id", referencedColumnName = "id")
+    @JsonIgnore //added recently
     private Address shippingAddress;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "billing_address_id", referencedColumnName = "id")
+    @JsonIgnore //added recently
     private Address billingAddress;
 
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonManagedReference
+    @JsonIgnore //added recently
     private User user;
 
 

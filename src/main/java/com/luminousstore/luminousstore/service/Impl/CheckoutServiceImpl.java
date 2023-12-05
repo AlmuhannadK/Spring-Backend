@@ -20,7 +20,9 @@ public class CheckoutServiceImpl implements CheckoutService {
 
     private final UserRepository userRepository;
 
-    @Transactional //atomic transactional operations in db
+
+    // i don't like this at all. Need to simplify it later
+    //@Transactional //atomic transactional operations in db
     public PurchaseResponse placeOrder(PurchaseRequest purchase) {
         Order order = purchase.getOrder();
         String orderTrackingNumber = generateOrderTrackingNumber();

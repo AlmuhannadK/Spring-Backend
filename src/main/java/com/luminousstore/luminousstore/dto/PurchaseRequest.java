@@ -24,5 +24,6 @@ public class PurchaseRequest {
     private Order order;
 
     private List<OrderItem> orderItems;
+
 }
 

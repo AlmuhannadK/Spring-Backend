@@ -1,5 +1,6 @@
 package com.luminousstore.luminousstore.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -30,5 +31,6 @@ public class Address {
 
     @OneToOne
     @PrimaryKeyJoinColumn
+    @JsonIgnore
     private Order order;
 }
